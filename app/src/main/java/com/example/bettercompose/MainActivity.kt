@@ -8,6 +8,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.bettercompose.ui.screens.OnboardingScreen1
+import com.example.bettercompose.ui.screens.onboarding.OnboardingScreenFlow
 import com.example.bettercompose.ui.theme.BetterComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +19,7 @@ class MainActivity : ComponentActivity() {
             BetterComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    OnboardingScreenFlow()
                 }
             }
         }
@@ -29,10 +31,11 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
+@Preview()
 @Composable
 fun DefaultPreview() {
     BetterComposeTheme {
-        Greeting("Android")
+//        OnboardingScreen1(0)
+        OnboardingScreenFlow()
     }
 }
