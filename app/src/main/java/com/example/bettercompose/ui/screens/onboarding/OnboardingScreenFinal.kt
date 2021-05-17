@@ -23,7 +23,7 @@ import com.example.bettercompose.ui.theme.BetterComposeTheme
 import com.example.bettercompose.ui.theme.Green
 
 @Composable
-fun OnboardingScreenFinal(onboardingState: MutableState<Int>) {
+fun OnboardingScreenFinal(onStateChange: (Int) -> Unit, currState: Int) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -70,7 +70,7 @@ fun OnboardingScreenFinal(onboardingState: MutableState<Int>) {
             ){
 
                 Button(
-                    onClick = { onboardingState.value = onboardingState.value + 1 },
+                    onClick = { onStateChange.invoke(currState + 1) },
                     modifier = Modifier
                         .padding(18.dp, 50.dp)
                         .fillMaxWidth(),
@@ -97,9 +97,6 @@ fun OnboardingScreenFinal(onboardingState: MutableState<Int>) {
 @Composable
 fun OnBoardingScreenFinalPreview() {
     BetterComposeTheme {
-        val state = remember {
-            mutableStateOf(2)
-        }
-        OnboardingScreenFinal(onboardingState = state)
+        OnboardingScreenFinal({}, 3)
     }
 }

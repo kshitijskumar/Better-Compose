@@ -22,7 +22,7 @@ import com.example.bettercompose.ui.screens.components.OnBoardingCircleRow
 import com.example.bettercompose.ui.screens.components.OnboardingPrevNextButtonSet
 
 @Composable
-fun OnboardingScreen1(onboardingState: MutableState<Int>) {
+fun OnboardingScreen1(currState: Int, onStateChange: (Int) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -70,7 +70,7 @@ fun OnboardingScreen1(onboardingState: MutableState<Int>) {
                 verticalArrangement = Arrangement.Bottom
             ){
                 OnBoardingCircleRow(whichDot = 0)
-                OnboardingPrevNextButtonSet(onboardingState)
+                OnboardingPrevNextButtonSet(false, onStateChange, currState)
             }
         }
     }
@@ -83,6 +83,6 @@ fun OnboardingScreen1(onboardingState: MutableState<Int>) {
 @Composable
 fun OnboardingPreview() {
     BetterComposeTheme {
-//        OnboardingScreen1()
+        OnboardingScreen1(0, {})
     }
 }

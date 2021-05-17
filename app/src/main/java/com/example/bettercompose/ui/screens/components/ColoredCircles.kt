@@ -61,22 +61,22 @@ fun OnBoardingCircleRow(totalDots: Int = 3, whichDot: Int) {
 }
 
 @Composable
-fun OnboardingPrevNextButtonSet(onboardingState: MutableState<Int>, shouldShowPrevious: Boolean = false) {
+fun OnboardingPrevNextButtonSet(shouldShowPrevious: Boolean = false, onStateChange: (Int) -> Unit, currState: Int) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         if(shouldShowPrevious) {
-            TextButton(onClick = { onboardingState.value = onboardingState.value - 1 }) {
+            TextButton(onClick = { onStateChange.invoke(currState - 1) }) {
                 Text(text = "Previous", color = Color.White, style = MaterialTheme.typography.body1)
             }
         }else {
-            TextButton(onClick = { onboardingState.value = 4 }) {
+            TextButton(onClick = { onStateChange.invoke(4) }) {
                 Text(text = "Skip", color = Color.White, style = MaterialTheme.typography.body1)
             }
         }
 
-        TextButton(onClick = { onboardingState.value = onboardingState.value + 1 }) {
+        TextButton(onClick = { onStateChange.invoke(currState + 1) }) {
             Text(text = "Next", color = Color.White, style = MaterialTheme.typography.body1)
         }
     }

@@ -4,9 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -26,7 +24,7 @@ import com.example.bettercompose.ui.theme.BetterComposeTheme
 import com.example.bettercompose.ui.theme.CreamPink
 
 @Composable
-fun OnboardingScreen2(onboardingState: MutableState<Int>) {
+fun OnboardingScreen2(onStateChange: (Int) -> Unit, currState: Int) {
 
     Box(
         modifier = Modifier
@@ -72,7 +70,7 @@ fun OnboardingScreen2(onboardingState: MutableState<Int>) {
                 verticalArrangement = Arrangement.Bottom
             ){
                 OnBoardingCircleRow(whichDot = 1)
-                OnboardingPrevNextButtonSet(onboardingState, true)
+                OnboardingPrevNextButtonSet(true, onStateChange, currState)
             }
         }
     }
@@ -86,6 +84,6 @@ fun OnBoardingScreen2Preview() {
         val state = remember {
             mutableStateOf(1)
         }
-        OnboardingScreen2(onboardingState = state)
+        OnboardingScreen2({}, 1)
     }
 }

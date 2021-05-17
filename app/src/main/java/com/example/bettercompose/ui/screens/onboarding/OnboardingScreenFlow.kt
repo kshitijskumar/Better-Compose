@@ -8,19 +8,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.example.bettercompose.ui.screens.MainNavigation
 import com.example.bettercompose.ui.screens.OnboardingScreen1
 
 @Composable
 fun OnboardingScreenFlow() {
 
-    val onboardingState = remember { mutableStateOf(0) }
+    var onboardingState by remember { mutableStateOf(0) }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        when(onboardingState.value) {
-            0 -> OnboardingScreen1(onboardingState = onboardingState)
-            1 -> OnboardingScreen2(onboardingState)
-            2 -> OnboardingScreenFinal(onboardingState = onboardingState)
-            else -> Toast.makeText(LocalContext.current, "Onboarding finished", Toast.LENGTH_SHORT).show()
+        when(onboardingState) {
+            0 -> OnboardingScreen1(0){ onboardingState = it}
+            1 -> OnboardingScreen2({ onboardingState = it }, 1)
+            2 -> OnboardingScreenFinal({ onboardingState = it }, 2)
+            else -> MainNavigation()
         }
     }
 }
